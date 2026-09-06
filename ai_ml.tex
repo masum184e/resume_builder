@@ -1,0 +1,227 @@
+\documentclass[10pt,letterpaper]{article}
+
+% =========================================================
+% Packages
+% =========================================================
+
+% ---------- Layout ----------
+\usepackage{changepage}      % adjustwidth environment
+\usepackage{paracol}         % multi-column layouts
+\usepackage{enumitem}        % customized lists
+\usepackage{tabularx}        % flexible-width tables
+\usepackage{geometry}        % page margins
+\usepackage{titlesec}        % section title formatting
+\usepackage{needspace}       % prevent section title at page bottom
+\usepackage{eso-pic}         % floating page elements
+\usepackage{calc}            % length calculations
+\usepackage{lastpage}        % total page count
+\usepackage{ifthen}          % conditional logic
+\usepackage{iftex}           % detect TeX engine
+\usepackage{amsmath}         % math support
+
+% ---------- Colors ----------
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0,0,0}
+
+% ---------- Fonts ----------
+% Charter is a professional serif font.
+% It is available in MiKTeX through the psnfss bundle.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}
+
+% ---------- Icons ----------
+\usepackage{fontawesome5}
+
+% ---------- PDF / ATS compatibility ----------
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    % \usepackage{lmodern} % ignore for miktex
+\fi
+
+% ---------- Links and PDF metadata ----------
+\usepackage[
+    pdftitle={Md Masum Billah - Software Engineer},
+    pdfauthor={Md Masum Billah},
+    pdfcreator={Md Masum Billah},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+
+\usepackage{bookmark}
+
+% =========================================================
+% Page Layout
+% =========================================================
+
+\geometry{
+    ignoreheadfoot, % set margins without considering header and footer
+    top=1.5 cm, % seperation between body and page edge from the top
+    bottom=1.5 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+}
+
+% =========================================================
+% General Settings
+% =========================================================
+
+\raggedright
+
+\pagestyle{empty}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+
+\setlength{\topskip}{0pt}
+
+\setlength{\columnsep}{0.15cm}
+
+\pagenumbering{gobble}
+
+% =========================================================
+% Hyperref helper
+% =========================================================
+
+% Some section files use \hrefWithoutArrow instead of \href.
+% Keep the original \href command and create the alias.
+\let\hrefWithoutArrow\href
+
+\input{common/column.tex}
+
+% =========================================================
+% Custom bullet points
+% =========================================================
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+% \renewcommand{\labelitemi}{%
+%     $\vcenter{\hbox{\small$\bullet$}}$%
+% }
+
+
+% =========================================================
+% Highlight list
+% =========================================================
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+% =========================================================
+% Header environment
+% =========================================================
+
+\newenvironment{header}
+{%
+    \setlength{\topsep}{0pt}%
+    \par\kern\topsep%
+    \centering%
+    \linespread{1.5}%
+}
+{%
+    \par\kern\topsep%
+}
+
+
+% =========================================================
+% Header separator
+% =========================================================
+
+\newsavebox{\ANDbox}
+
+\sbox{\ANDbox}{$|$}
+
+\newcommand{\AND}{%
+    \unskip
+    \cleaders\copy\ANDbox\hskip\wd\ANDbox
+    \ignorespaces
+}
+
+
+% =========================================================
+% Section formatting
+% =========================================================
+
+\titleformat{\section}
+    {\needspace{4\baselineskip}\bfseries\large}
+    {}
+    {0pt}
+    {}
+    [\vspace{1pt}\titlerule\vspace{0.1cm}]
+
+    \titlespacing{\section}
+    {-1pt}
+    {0.1cm}
+    {0.1cm}
+
+
+% =========================================================
+% Document
+% =========================================================
+
+\begin{document}
+
+% ---------- Header ----------
+\input{sections/header.tex}
+
+
+% ---------- Experience ----------
+\input{sections/experience.tex}
+
+
+% ---------- Projects ----------
+\input{sections/projects_ml.tex}
+
+
+% ---------- Education ----------
+\input{sections/education.tex}
+
+
+% ---------- Skills + Open Source ----------
+\vspace{-0.3cm}
+\noindent
+\begin{minipage}[t]{0.44\textwidth}
+    \input{sections/skills_se.tex}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.55\textwidth}
+    \input{sections/research.tex}
+\end{minipage}
+
+
+
+% ---------- Online Judges ----------
+\input{sections/online_judges.tex}
+
+
+% ---------- Achievements ----------
+\input{sections/achievements.tex}
+
+
+\end{document}
