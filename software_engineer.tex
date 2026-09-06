@@ -173,12 +173,12 @@
     {}
     {0pt}
     {}
-    [\vspace{1pt}\titlerule]
+    [\vspace{1pt}\titlerule\vspace{0.1cm}]
 
-\titlespacing{\section}
+    \titlespacing{\section}
     {-1pt}
-    {0pt}
-    {0.2cm}
+    {0.1cm}
+    {0.1cm}
 
 
 % =========================================================
@@ -196,7 +196,7 @@
 
 
 % ---------- Projects ----------
-\input{sections/projects.tex}
+\input{sections/projects_se.tex}
 
 
 % ---------- Education ----------
@@ -204,13 +204,16 @@
 
 
 % ---------- Skills + Open Source ----------
-\begin{minipage}[t]{0.45\textwidth}
+\vspace{-0.3cm}
+\noindent
+\begin{minipage}[t]{0.44\textwidth}
     \input{sections/skills_se.tex}
-\end{minipage}
+\end{minipage}%
 \hfill
-\begin{minipage}[t]{0.53\textwidth}
+\begin{minipage}[t]{0.55\textwidth}
     \input{sections/open_source.tex}
 \end{minipage}
+
 
 
 % ---------- Online Judges ----------
