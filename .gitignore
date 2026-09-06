@@ -1,0 +1,110 @@
+# =========================================================
+# LaTeX / pdfLaTeX generated files
+# =========================================================
+
+# Main auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+
+# Bibliography
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+
+# Index / glossary
+*.idx
+*.ilg
+*.ind
+*.glo
+*.glg
+*.gls
+*.ist
+
+# LaTeX build files
+*.fls
+*.fdb_latexmk
+*.synctex
+*.synctex.gz
+*.synctex(busy)
+
+# Beamer
+*.nav
+*.snm
+*.vrb
+
+# Other LaTeX temporary files
+*.dvi
+*.xdv
+*.ps
+*.brf
+*.ent
+*.tdo
+*.xmpi
+*.4ct
+*.4tc
+*.idv
+*.lg
+*.tmp
+
+# =========================================================
+# PDF output
+# =========================================================
+
+# Ignore generated PDFs
+*.pdf
+
+# If you want to keep a specific final CV PDF, uncomment:
+# !resume.pdf
+# !cv.pdf
+
+# =========================================================
+# Editor / IDE files
+# =========================================================
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# =========================================================
+# LaTeX editor files
+# =========================================================
+
+# TeXstudio
+*.txss
+
+# TeXworks
+*.bak
+
+# Overleaf
+*.synctex.gz
+
+# =========================================================
+# OS / temporary files
+# =========================================================
+
+*.tmp
+*.temp
+*.cache

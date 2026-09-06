@@ -26,6 +26,8 @@
 % ---------- Fonts ----------
 % Charter is a professional serif font.
 % It is available in MiKTeX through the psnfss bundle.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage{charter}
 
 % ---------- Icons ----------
@@ -38,6 +40,7 @@
 
     \usepackage[T1]{fontenc}
     \usepackage[utf8]{inputenc}
+    % \usepackage{lmodern} % ignore for miktex
 \fi
 
 % ---------- Links and PDF metadata ----------
@@ -51,20 +54,19 @@
 
 \usepackage{bookmark}
 
-
 % =========================================================
 % Page Layout
 % =========================================================
 
 \geometry{
-    ignoreheadfoot,
-    top=2cm,
-    bottom=2cm,
-    left=2cm,
-    right=2cm,
-    footskip=1cm
+    ignoreheadfoot, % set margins without considering header and footer
+    top=1.5 cm, % seperation between body and page edge from the top
+    bottom=1.5 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
 }
-
 
 % =========================================================
 % General Settings
@@ -84,7 +86,6 @@
 
 \pagenumbering{gobble}
 
-
 % =========================================================
 % Hyperref helper
 % =========================================================
@@ -93,89 +94,44 @@
 % Keep the original \href command and create the alias.
 \let\hrefWithoutArrow\href
 
-
-% =========================================================
-% One-column entries
-% =========================================================
-
-\newenvironment{onecolentry}
-{%
-    \begin{adjustwidth}{0pt}{0pt}%
-}
-{%
-    \end{adjustwidth}%
-}
-
-
-% =========================================================
-% Two-column entries
-% =========================================================
-
-\newenvironment{twocolentry}[2][]
-{%
-    \onecolentry
-    \def\secondColumn{#2}%
-    \setcolumnwidth{\fill,4.5cm}%
-    \begin{paracol}{2}%
-}
-{%
-    \switchcolumn
-    \raggedleft
-    \secondColumn
-    \end{paracol}%
-    \endonecolentry
-}
-
-
-% =========================================================
-% Three-column entries
-% =========================================================
-
-\newenvironment{threecolentry}[3][]
-{%
-    \onecolentry
-    \def\thirdColumn{#3}%
-    \setcolumnwidth{\fill,\fill,4.5cm}%
-    \begin{paracol}{3}%
-    {\raggedright #2}%
-    \switchcolumn
-}
-{%
-    \switchcolumn
-    \raggedleft
-    \thirdColumn
-    \end{paracol}%
-    \endonecolentry
-}
-
+\input{common/column.tex}
 
 % =========================================================
 % Custom bullet points
 % =========================================================
 
-\renewcommand{\labelitemi}{%
-    $\vcenter{\hbox{\small$\bullet$}}$%
-}
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+% \renewcommand{\labelitemi}{%
+%     $\vcenter{\hbox{\small$\bullet$}}$%
+% }
 
 
 % =========================================================
 % Highlight list
 % =========================================================
-
-\newenvironment{highlights}
-{%
+\newenvironment{highlights}{
     \begin{itemize}[
-        topsep=0.10cm,
-        parsep=0.10cm,
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
         partopsep=0pt,
         itemsep=0pt,
         leftmargin=10pt
-    ]%
-}
-{%
-    \end{itemize}%
-}
-
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
 
 % =========================================================
 % Header environment
