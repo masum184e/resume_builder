@@ -1,0 +1,102 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{enumitem} % for customizing lists
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage{fontawesome5} % for using icons
+
+\usepackage[
+    pdftitle={Md Masum Billah's CV},
+    pdfauthor={Md Masum Billah},
+    pdfcreator={Md Masum Billah},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color
+
+% One-column entries
+\newenvironment{onecolentry}
+    {\begin{adjustwidth}{0cm + 0.00001cm}{0cm + 0.00001cm}}
+    {\end{adjustwidth}}
+
+% Two-column entries
+\newenvironment{twocolentry}[2][]
+    {%
+        \onecolentry
+        \def\secondColumn{#2}%
+        \setcolumnwidth{\fill, 4.5cm}%
+        \begin{paracol}{2}%
+    }
+    {%
+        \switchcolumn
+        \raggedleft
+        \secondColumn
+        \end{paracol}%
+        \endonecolentry
+    }
+
+% Three-column entries
+\newenvironment{threecolentry}[3][]
+    {%
+        \onecolentry
+        \def\thirdColumn{#3}%
+        \setcolumnwidth{\fill, \fill, 4.5cm}%
+        \begin{paracol}{3}%
+        {\raggedright #2}%
+        \switchcolumn
+    }
+    {%
+        \switchcolumn
+        \raggedleft
+        \thirdColumn
+        \end{paracol}%
+        \endonecolentry
+    }
+
+% Custom bullet point
+\renewcommand{\labelitemi}{%
+    $\vcenter{\hbox{\small$\bullet$}}$%
+}
+
+% Highlight list
+\newenvironment{highlights}
+{%
+    \begin{itemize}[
+        topsep=0.10cm,
+        parsep=0.10cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}
+{%
+    \end{itemize}
+}
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+\begin{document}
+
+\newcommand{\AND}{\unskip
+    \cleaders\copy\ANDbox\hskip\wd\ANDbox
+    \ignorespaces
+}
+\newsavebox\ANDbox
+\sbox\ANDbox{$|$}
+
+\input{sections/header.tex}
+\input{sections/projects.tex}
+\input{sections/education.tex}
+
+\end{document}
